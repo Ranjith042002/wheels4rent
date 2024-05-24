@@ -54,6 +54,23 @@ def login_user():
 
     return render_template('login.html')
 
+@app.route('/ride', methods=['GET', 'POST'])
+def ride():
+    if request.method == 'POST':
+        location = request.form.get('location')
+        pickup_date = request.form.get('pickup_date')
+        pickup_time = request.form.get('pickup_time')
+        return_date = request.form.get('return_date')
+        return_time = request.form.get('return_time')
+
+        new_ride = {'location': location, 'pickup_date': pickup_date, 'pickup_time': pickup_time,'return_date': return_date, 'return_time': return_time}
+        db.ride.insert_one(new_ride)
+
+        return redirect(url_for('services'))
+
+    return render_template('ride.html')
+
+
 
 if __name__ =="__main__":
     app.run(debug=True)
