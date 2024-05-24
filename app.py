@@ -4,12 +4,10 @@ import os
 
 app=Flask(__name__)
 
-try:
-    app.config["MONGO_URI"] = os.getenv('mongo_url')
-    client=MongoClient(os.getenv('mongo_url'))
-    db=client['Wheels4rent']
-except:
-    pass
+
+app.config["MONGO_URI"] = os.getenv('mongo_url')
+client=MongoClient(os.getenv('mongo_url'))
+db=client['Wheels4rent']
 
 @app.route('/')
 def home():
