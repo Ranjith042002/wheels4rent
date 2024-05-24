@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.2/css/boxicons.min.css">
+    <title>Wheels 4 Rent/Ride</title>
+</head>
+<body>
+    <header>
+        <h2 class="logo">Wheels 4 Rent</h2>
+        <nav class="navigation">
+           <a href="/ride">Home</a>
+           <a href="/about">About</a>
+           <a href="/reviews">Reviews</a>
+           <a href="/logout"><button class="btnLogout-popup">Logout</button></a>
+        </nav>
+   </header>
+
+   <div class="heading">
+    <h1>Welcome To Wheels 4 Rent</h1>
+   </div>
+
+   <div class="form-container">
+    <form action="/ride" method="post">
+        <div class="input-box">
+            <span>Location</span>
+            <input type="Search-location" name="location" id="loaction" placeholder="Search Places" required>
+        </div>
+        <div class="input-box">
+            <span>Pick-up Date</span>
+            <input type="date" name="Pick-up-date" id="Pick-up-date" placeholder="Date" required>
+        </div>
+        <div class="input-box">
+            <span>Pick-up Time</span>
+            <input type="time" name="Pick-up-time" id="Pick-up-time" placeholder="time" required>
+        </div>
+        <div class="input-box">
+            <span>Return Date</span>
+            <input type="date" name="return-date" id="return-date" placeholder="Date" required>
+        </div>
+        <div class="input-box">
+            <span>Return Time</span>
+            <input type="time" name="return-time" id="return-time" placeholder="Time" required>
+        </div>
+        <input type="submit" name="" id="" class="btn">
+    </form>
+</div>
+</section>
+
+</body>
+</html>
