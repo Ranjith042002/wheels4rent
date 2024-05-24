@@ -16,6 +16,13 @@ def home():
     except:
         return "not working"
 
+@app.route('/chatbot')
+def chat():
+    try:
+        return render_template('chatbot.html')
+    except:
+        return "not working"
+
 @app.route('/services')
 def services():
     return render_template('services.html')
