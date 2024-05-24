@@ -16,5 +16,44 @@ def home():
     except:
         return "not working"
 
+@app.route('/register', methods=['GET', 'POST'])
+def register_new_user():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        terms_accepted = 'terms' in request.form
+
+        # Check if the email is already registered
+        existing_user = db.users.find_one({'email': email})
+        if existing_user:
+            return 'Email already exists. Please use a different email.'
+
+        # Insert the new user into the database
+        new_user = {'username': username, 'email': email, 'password': password, 'terms_accepted': terms_accepted}
+        db.users.insert_one(new_user)
+
+        return render_template('login.html')
+
+
+    return render_template('register.html')
+
+
+@app.route('/login', methods=['GET','POST'])
+def login_user():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        # Check if the user exists in the database and password matches
+        user = db.users.find_one({'email': email, 'password': password})
+        if user:
+            return redirect(url_for('ride'))  # Redirect to ride page after successful login
+        else:
+            return 'Invalid credentials. Please try again.'
+
+    return render_template('login.html')
+
+
 if __name__ =="__main__":
     app.run(debug=True)
