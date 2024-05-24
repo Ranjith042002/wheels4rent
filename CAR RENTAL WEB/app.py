@@ -11,7 +11,7 @@ client=MongoClient(os.getenv('mongo_url'))
 db=client['Wheels4rent']
 
 @app.route('/')
-def home():
+def home12():
     return render_template('register.html')
 
 @app.route('/services')
