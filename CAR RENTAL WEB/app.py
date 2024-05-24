@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for
-from flask_pymongo import PyMongo
+from pymongo import MongoClient
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/car-rent'
-mongo = PyMongo(app)
+# app.config['MONGO_URI'] = 'mongodb://localhost:27017/car-rent'
+app.config["MONGO_URI"] = os.getenv('mongo_url')
+client=MongoClient(os.getenv('mongo_url'))
+db=client['Wheels4rent']
 
 @app.route('/')
 def home():
@@ -36,13 +39,13 @@ def register_new_user():
         terms_accepted = 'terms' in request.form
 
         # Check if the email is already registered
-        existing_user = mongo.db.users.find_one({'email': email})
+        existing_user = db.users.find_one({'email': email})
         if existing_user:
             return 'Email already exists. Please use a different email.'
 
         # Insert the new user into the database
         new_user = {'username': username, 'email': email, 'password': password, 'terms_accepted': terms_accepted}
-        mongo.db.users.insert_one(new_user)
+        db.users.insert_one(new_user)
 
         return render_template('login.html')
 
@@ -56,7 +59,7 @@ def login_user():
         password = request.form['password']
 
         # Check if the user exists in the database and password matches
-        user = mongo.db.users.find_one({'email': email, 'password': password})
+        user = db.users.find_one({'email': email, 'password': password})
         if user:
             return redirect(url_for('ride'))  # Redirect to ride page after successful login
         else:
@@ -75,7 +78,7 @@ def ride():
         return_time = request.form.get('return_time')
 
         new_ride = {'location': location, 'pickup_date': pickup_date, 'pickup_time': pickup_time,'return_date': return_date, 'return_time': return_time}
-        mongo.db.ride.insert_one(new_ride)
+        db.ride.insert_one(new_ride)
 
         return redirect(url_for('services'))
 
@@ -91,10 +94,10 @@ def submit_review():
 
         # Insert the new review into the database
         new_review = {'name': name, 'email': email, 'review': review}
-        mongo.db.reviews.insert_one(new_review)
+        db.reviews.insert_one(new_review)
 
         # Retrieve all reviews from the MongoDB collection
-    reviews = list(mongo.db.reviews.find())
+    reviews = list(db.reviews.find())
     return render_template('reviews.html', reviews=reviews)
 
 if __name__ == '__main__':
