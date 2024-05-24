@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for
-# from pymongo import MongoClient
+from pymongo import MongoClient
 # from flask_cors import CORS
 import os
 
 app = Flask(__name__)
 # CORS(app)
 # app.config['MONGO_URI'] = 'mongodb://localhost:27017/car-rent'
-# app.config["MONGO_URI"] = os.getenv('mongo_url')
-# client=MongoClient(os.getenv('mongo_url'))
-# db=client['Wheels4rent']
+app.config["MONGO_URI"] = os.getenv('mongo_url')
+client=MongoClient(os.getenv('mongo_url'))
+db=client['Wheels4rent']
 
 @app.route('/')
 def home12():
