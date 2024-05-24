@@ -16,6 +16,22 @@ def home():
     except:
         return "not working"
 
+@app.route('/services')
+def services():
+    return render_template('services.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/confirm')
+def confirm():
+    return render_template('confirm.html')
+
+@app.route('/logout')
+def logout():
+    return render_template('logout.html')
+
 @app.route('/register', methods=['GET', 'POST'])
 def register_new_user():
     if request.method == 'POST':
@@ -54,6 +70,7 @@ def login_user():
 
     return render_template('login.html')
 
+
 @app.route('/ride', methods=['GET', 'POST'])
 def ride():
     if request.method == 'POST':
@@ -69,6 +86,22 @@ def ride():
         return redirect(url_for('services'))
 
     return render_template('ride.html')
+
+
+@app.route('/reviews', methods=['GET', 'POST'])
+def submit_review():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        review = request.form['review']
+
+        # Insert the new review into the database
+        new_review = {'name': name, 'email': email, 'review': review}
+        db.reviews.insert_one(new_review)
+
+        # Retrieve all reviews from the MongoDB collection
+    reviews = list(db.reviews.find())
+    return render_template('reviews.html', reviews=reviews)
 
 
 
