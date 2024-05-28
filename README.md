@@ -7,10 +7,10 @@ This project is a car rental web application that allows users to book cars, lea
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Setup and Installation](#setup-and-installation)
-- [Usage](#usage)
-- [Directory Structure](#directory-structure)
-- [Azure Services Integration](#azure-services-integration)
-- [Contributing](#contributing)
+- [collaboration](#collaboration)
+- [Screenshot](#screenshot)
+- [Demo url](#demo-url)
+- [Video url](#video-url)
 
 
 ## Features
@@ -68,6 +68,6 @@ Muralikrishnan,
 
 ## demo url
 Website: https://wheels4rent.azurewebsites.net/
-## video  url
+## video url
 Youtube link: https://youtu.be/L4ZktTa4JfI
 
