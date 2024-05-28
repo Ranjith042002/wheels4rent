@@ -42,7 +42,7 @@ This project is a car rental web application that allows users to book cars, lea
 ### collaboration
 
 Ranjith Kumar M,
-Megavraman,
+Megavarman,
 Manikandan,
 Muralikrishnan,
 
