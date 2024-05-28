@@ -44,7 +44,7 @@ This project is a car rental web application that allows users to book cars, lea
 Ranjith Kumar M,
 Megavarman,
 Manikandan,
-Muralikrishnan,
+Muralikrishnan.
 
 ## screenshot
 
