@@ -94,7 +94,7 @@ def ride():
 
     return render_template('ride.html')
 
-@app.route('/reviews', methods=['POST'])
+@app.route('/reviews', methods=['POST','GET'])
 def submit_review():
     try:
         if request.method == 'POST':
@@ -108,7 +108,7 @@ def submit_review():
 
             # Retrieve all reviews from the MongoDB collection
             reviews = list(db.reviews.find())
-            return render_template('reviews.html', reviews=reviews)
+        return render_template('reviews.html', reviews=reviews)
     except:
         return render_template('reviews.html')
 
