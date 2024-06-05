@@ -99,16 +99,16 @@ def ride():
 def submit_review():
     try:
         if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        review = request.form['review']
+            name = request.form['name']
+            email = request.form['email']
+            review = request.form['review']
 
-        # Insert the new review into the database
-        new_review = {'name': name, 'email': email, 'review': review}
-        db.reviews.insert_one(new_review)
+            # Insert the new review into the database
+            new_review = {'name': name, 'email': email, 'review': review}
+            db.reviews.insert_one(new_review)
 
-        # Retrieve all reviews from the MongoDB collection
-        reviews = list(db.reviews.find())
+            # Retrieve all reviews from the MongoDB collection
+            reviews = list(db.reviews.find())
         return render_template('reviews.html', reviews=reviews)
     except:
         return render_template('reviews.html')
