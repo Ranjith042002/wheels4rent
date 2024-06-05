@@ -14,7 +14,7 @@ def home():
     try:
         return render_template('register.html')
     except:
-        return "not working"
+        return "not working ##"
 
 @app.route('/chatbot')
 def chat():
