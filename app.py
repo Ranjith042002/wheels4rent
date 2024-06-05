@@ -104,10 +104,10 @@ def submit_review():
 
             # Insert the new review into the database
             new_review = {'name': name, 'email': email, 'review': review}
-            db.reviews.insert_one(new_review)
+            db.review.insert_one(new_review)
 
             # Retrieve all reviews from the MongoDB collection
-            reviews = list(db.reviews.find())
+            reviews = list(db.review.find())
         return render_template('reviews.html', reviews=reviews)
     except:
         return render_template('reviews.html')
