@@ -97,7 +97,8 @@ def ride():
 
 @app.route('/reviews', methods=['GET', 'POST'])
 def submit_review():
-    if request.method == 'POST':
+    try:
+        if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         review = request.form['review']
@@ -107,8 +108,10 @@ def submit_review():
         db.reviews.insert_one(new_review)
 
         # Retrieve all reviews from the MongoDB collection
-    reviews = list(db.reviews.find())
-    return render_template('reviews.html', reviews=reviews)
+        reviews = list(db.reviews.find())
+        return render_template('reviews.html', reviews=reviews)
+    except:
+        return render_template('reviews.html')
 
 
 
