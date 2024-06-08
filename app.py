@@ -8,7 +8,8 @@ app=Flask(__name__)
 app.config["MONGO_URI"] = os.getenv('mongo_url')
 client=MongoClient(os.getenv('mongo_url'))
 db=client['Wheels4rent']
-reviews_collection = db['reviews']
+collection = db['reviews']
+
 
 
 @app.route('/')
@@ -96,8 +97,9 @@ def ride():
 
     return render_template('ride.html')
 
-@app.route('/reviews', methods=['GET','POST'])
+@app.route('/reviews', methods=['POST', 'GET'])
 def submit_review():
+    try:
         if request.method == 'POST':
             name = request.form['name']
             email = request.form['email']
@@ -105,11 +107,13 @@ def submit_review():
 
             # Insert the new review into the database
             new_review = {'name': name, 'email': email, 'review': review}
-            db.reviews.insert_one(new_review)
+            collection.insert_one(new_review)
 
         # Retrieve all reviews from the MongoDB collection
-        reviews = list(reviews_collection.find())
+        reviews = list(collection.find())
         return render_template('reviews.html', reviews=reviews)
+    except:
+        return render_template('reviews.html')
 
 
 
