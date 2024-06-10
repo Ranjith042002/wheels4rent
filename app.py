@@ -112,7 +112,7 @@ def submit_review():
         reviews = list(db.review.find())
         return render_template('reviews.html', reviews=reviews)
     except:
-        return render_template('reviews.html')
+        return render_template('reviews.html') 
 
 
 
