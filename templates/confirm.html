@@ -14,11 +14,11 @@
             <p>Thank you for your order!</p>
             <div class="order-details">
                 <h2>Your Rental Details:</h2>
-                <p><strong>Location:</strong> <span id="confirmLocation"></span></p>
+                <!-- <p><strong>Location:</strong> <span id="confirmLocation"></span></p>
                 <p><strong>Pick-up Date:</strong> <span id="confirmPickUpDate"></span></p>
                 <p><strong>Pick-up Time:</strong> <span id="confirmPickUpTime"></span></p>
                 <p><strong>Return Date:</strong> <span id="confirmReturnDate"></span></p>
-                <p><strong>Return Time:</strong> <span id="confirmReturnTime"></span></p>
+                <p><strong>Return Time:</strong> <span id="confirmReturnTime"></span></p> -->
                 <p><strong>Car Model:</strong> <span id="carModel"></span></p>
                 <p><strong>Year:</strong> <span id="carYear"></span></p>
                 <p><strong>Price:</strong> <span id="carPrice"></span> | <span id="monthlyPrice"></span> per month</p>
@@ -31,11 +31,6 @@
     <script>
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
-            document.getElementById('confirmLocation').textContent = urlParams.get('location');
-            document.getElementById('confirmPickUpDate').textContent = urlParams.get('pick_up_date');
-            document.getElementById('confirmPickUpTime').textContent = urlParams.get('pick_up_time');
-            document.getElementById('confirmReturnDate').textContent = urlParams.get('return_date');
-            document.getElementById('confirmReturnTime').textContent = urlParams.get('return_time');
             document.getElementById('carModel').textContent = urlParams.get('model');
             document.getElementById('carYear').textContent = urlParams.get('year');
             document.getElementById('carPrice').textContent = urlParams.get('price');
